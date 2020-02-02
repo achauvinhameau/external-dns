@@ -246,6 +246,14 @@ func main() {
 		)
 	case "transip":
 		p, err = provider.NewTransIPProvider(cfg.TransIPAccountName, cfg.TransIPPrivateKeyFile, domainFilter, cfg.DryRun)
+	case "eip":
+		p, err = provider.NewEIPProvider(
+			provider.EIPConfig{
+				DomainFilter: domainFilter,
+				ZoneIDFilter: zoneIDFilter,
+				DryRun:       cfg.DryRun,
+			},
+		)
 	default:
 		log.Fatalf("unknown dns provider: %s", cfg.Provider)
 	}
